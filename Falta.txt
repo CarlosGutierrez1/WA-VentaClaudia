@@ -1,0 +1,4 @@
+En registrar venta - falta hacer boton para añadir nuevos campos, falta poder registrar todos los campos
+en registrar compra
+en historial
+en registrar producto
