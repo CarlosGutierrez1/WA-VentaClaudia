@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Ingresar Venta</title>
+    {% extends  "layout.html" %}
+
+    {% block content %}
+    <div class="Contenedorprincipal">
+
+
+    <div class="ContenedorCentro ingresardatos">
+      <h2>Registrar venta</h2>
+      <h3>Ingrese los siguientes datos:</h3>
+      <hr>
+
+      <div class="ElementoForm">
+      <label class="Labelparainputs" for="getproducto">Escriba y seleccione el producto que desea registrar:</label>
+      <input type="text" name="getproducto" id="getproducto" placeholder="Escriba aqui">
+      </div>
+      <div class="contenedorresultadoproductos">
+
+      </div>
+      <form class="forms" action="index.html" method="post">
+      <div class="ElementoForm">
+      <label class="Labelparainputs" for="valor">Ingrese el valor(12000)</label>
+      <input type="number" placeholder="0" min="0" name="valor" required>
+</div>
+      <div class="ElementoForm">
+      <label class="Labelparainputs" for="cantidad">Ingrese la cantidad</label>
+      <input type="number" placeholder="0" min="0" name="cantidad" required>
+</div>
+      <div class="ElementoForm">
+      <label class="Labelparainputs" for="fecha">Ingrese la fecha de venta</label>
+      <input type="date" name="fecha" required>
+      </div>
+      <input type="submit" name="submit" class="buttonsubmit" value="   Registrar   ">
+
+      </form>
+      <br>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#getproducto").on("input",function(e){
+            $("#datalist").empty();
+            $.ajax({
+                method:"post",
+                url:"/BusquedaActivaProducto",
+                data:{text:$("#getproducto").val()},
+                success:function(res){
+                    var data = "<ul>";
+                    $.each(res,function(index,value){
+                        data += "<li>"+value.word_eng+"</li>";
+                    });
+                    data += "</ul>";
+                    $("#datalist").html(data);
+                }
+            });
+        });
+    });
+</script>
+    {% endblock %}

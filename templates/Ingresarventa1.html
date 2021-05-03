@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- usado para el script de busqueda reactiva -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/estilos.css">
+    <title>Ingresar Venta</title>
+    </head>
+<body>
+    <div class="Contenedorgrandeazul">
+
+      <h2>Registrar venta</h2>
+      <h3>Ingrese los siguientes datos:</h3>
+      <hr>
+
+      <div class="ContenedorInputs">
+          <!-- <form class="" action="index.html" method="post"> -->
+        <div class="Contenedorbusquedaproducto">
+          <div class="contenedordetextobusqueda">
+
+
+          <label class="Labelparainputs" for="getproducto">Busque y seleccione el producto a registrar:</label>
+          <input type="text" name="getproducto" id="getproducto" placeholder="Busque aqui">
+          </div>
+          <br>
+
+          <div class="contenedorresultadosenradioinput" id="resultadosbusqueda">
+
+
+
+
+
+          </div>
+        </div>
+
+        <div class="Contenedordatosproducto">
+
+
+        <label class="Labelparainputs" for="valor">Ingrese el valor(12000)</label>
+        <input type="number" placeholder="0" min="0" name="valor" required>
+
+        <label class="Labelparainputs" for="cantidad">Ingrese la cantidad</label>
+        <input type="number" placeholder="0" min="0" name="cantidad" required>
+        <br>
+        <label class="Labelparainputs" for="fecha">Ingrese la fecha de venta</label>
+        <input type="date" name="fecha" required>
+        </div>
+
+        <!-- </form> -->
+      </div>
+
+
+    </div>
+
+
+</body>
+
+<!-- Script para buscar en la DB productos en base a lo que se escriba en getproducto -->
+<!-- de manera que aparezcan todos los productos con el nombre parecido a lo que se escribe -->
+<!-- para mas informacion link del sitio donde se tomo el script https://www.youtube.com/watch?v=-vJufZvS5aU -->
+
+      <script>
+          $(document).ready(function(){
+              $("#getproducto").on("input",function(e){
+                  $("#resultadosbusqueda").empty();
+                  $.ajax({
+                      method:"post",
+                      url:"/buscarproductoslive",
+                      data:{text:$("#getproducto").val()},
+                      success:function(res){
+                          var data = "";
+                          $.each(res,function(index,value){
+                              data += "<label><input type='radio' name='producto' value='" + value[0] + "'>"+value[1]+"</label>";
+                              console.log(value[1]);
+                          });
+
+                          $("#resultadosbusqueda").html(data);
+                      }
+                  });
+              });
+          });
+      </script>
+</html>
