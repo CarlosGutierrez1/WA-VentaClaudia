@@ -1,4 +1,8 @@
 En registrar venta - falta hacer boton para añadir nuevos campos, falta poder registrar todos los campos
+url: 
+https://stackoverflow.com/questions/18470682/html-form-make-inputs-appear-on-the-same-line/18470972
+https://stackoverflow.com/questions/50909567/how-to-add-more-input-fields-when-user-click-on-plus-sign
+https://stackoverflow.com/questions/9859111/get-array-of-values-from-multiple-inputs-using-jquery
 en registrar compra
 en historial
 en registrar producto
